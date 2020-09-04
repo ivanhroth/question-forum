@@ -19,9 +19,9 @@
 
 ## Example user
 
-email: example@example.com
-username: example
-password: example
+* email: example@example.com
+* username: example
+* password: example
 
 # User Stories
 
@@ -184,4 +184,3 @@ As a user (who may be registered or unregistered), I want to view the page for a
 
 
 ## Browse questions
-
