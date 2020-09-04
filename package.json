@@ -2,9 +2,9 @@
   "name": "question-forum",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "./bin/www",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon -r dotenv/config ./bin/www"
   },
   "repository": {
     "type": "git",
