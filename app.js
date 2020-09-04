@@ -9,4 +9,4 @@ const app = express();
 app.use("/users", usersRouter);
 app.use("/questions", questionsRouter);
 
-
+module.exports = app;
