@@ -179,8 +179,44 @@ As a user (who may be registered or unregistered), I want to view the page for a
 * What happens if a user who's not logged in tries to post an answer with the form?
     * They'll be redirected to the login page.
 
-
 ## Logging out
 
+As a registered user, I want to log out so that I can view the website as a logged-out user.
+
+### Questions
+
+* What happens after a user logs out?
+    * They are redirected to the home page and they are no longer logged in.
+
+* Where will the log out button be displayed?
+    * In the top right corner, where the "log in" and "register" buttons are displayed for logged-out users.
+
+* What paths will be used to log a user out?
+    * A POST request to /users/log-out will log the user out.
+
+
+### Acceptance criteria
+
+* User can click the "log out" button in the upper right once they are logged in to log themselves out.
 
 ## Browse questions
+
+As a user (who may or may not be registered/logged in), I want to browse the list of most recent questions on the site.
+
+### Questions
+
+* Where will the list of recent questions be found (by what routes will it be accessed)?
+    * At the home page (a GET request to /)
+
+* Will the homepage look different for logged in vs. logged out users?
+    * Apart from the log in/register buttons in the navbar, no. This may be changed later but it's not part of MVP.
+
+* What order will the recent questions be listed in?
+    * Chronological (most recent first)
+
+* How many questions will be displayed at a time?
+    * For now, all the questions in the database will be displayed on the homepage.
+
+### Acceptance criteria
+
+* Users can access the homepage (/) and see a list of all questions on the site, listed in chronological order from most to least recent.
