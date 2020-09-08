@@ -17,8 +17,10 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 router.get('/ask', asyncHandler(async (req, res) => {
+    const question = Question.build();
     res.render('question-form', {
-        title: 'Question Form'
+        title: 'Question Form',
+        question
     })
 }))
 
