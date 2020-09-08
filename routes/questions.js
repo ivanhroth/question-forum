@@ -1,4 +1,6 @@
 const express = require("express");
+const { check } = require("express-validator");
+const { handleValidationErrers, asyncHandler } = require("../utils");
 
 const { check } = require("express-validator");
 const { handleValidationErrers, asyncHandler } = require("../utils");
@@ -64,6 +66,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
 router.post('/:id(\\d+)', asyncHandler(async (req, res) => {
     const id = req.params.id;
     const { answerMessage } = req.body;
+    res.redirect('/');
 }));
 
 module.exports = router;
