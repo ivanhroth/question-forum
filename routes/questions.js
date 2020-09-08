@@ -63,9 +63,9 @@ const validateAnswer = [
 router.post('/:id(\\d+)', validateAnswer, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const { answerMessage } = req.body;
-    const loggedIn = false;
+    const loggedIn = res.locals.authenticated;
     if (loggedIn){
-        const userId = null;
+        const userId = res.locals.user.id;
         await Answer.create({
             questionId: id,
             userId,
