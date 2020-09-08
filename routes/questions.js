@@ -63,8 +63,17 @@ const validateAnswer = [
 router.post('/:id(\\d+)', validateAnswer, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const { answerMessage } = req.body;
-    // TODO: check if the user is logged in; if so, create the question object, associated with the relevant userId. otherwise redirect them to the login page
-    res.redirect('/log-in');
+    const loggedIn = false;
+    if (loggedIn){
+        const userId = null;
+        await Answer.create({
+            questionId: id,
+            userId,
+            message: answerMessage
+        });
+        res.redirect(`/questions/${id}`); // might change this later to do some kind of fancy AJAX thing but this (which is basically just refreshing the page) should work for now
+    }
+    else res.redirect('/users/log-in');
 }));
 
 module.exports = router;
