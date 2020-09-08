@@ -5,6 +5,7 @@ const questionsRouter = require("./routes/questions");
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const { environment, sessionSecret } = require('./config');
+const store = require('connect-pg-simple');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.get('/', (req, res) => {
 
 app.use(session({
   name: 'question-forum.sid',
+  store: new (store(session))(),
   secret: sessionSecret,
   resave: false,
   saveUninitialized: false,

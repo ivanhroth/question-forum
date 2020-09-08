@@ -4,7 +4,7 @@
   "description": "",
   "main": "./bin/www",
   "scripts": {
-    "start": "nodemon -r dotenv/config ./bin/www"
+    "start": "PGUSER=question_forum_app PGDATABASE=question_forum_development PGPASSWORD=password nodemon -r dotenv/config ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ivanhroth/question-forum#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "connect-pg-simple": "^6.2.1",
     "cookie-parser": "^1.4.5",
     "csurf": "^1.11.0",
     "dotenv": "^8.2.0",
