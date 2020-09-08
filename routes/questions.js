@@ -1,6 +1,7 @@
 const express = require("express");
 const { handleValidationErrers, asyncHandler } = require("../utils");
 const { check } = require("express-validator");
+const { port } = require('../config');
 
 const router = express.Router();
 
@@ -60,7 +61,7 @@ const validateAnswer = [
     check('answerMessage').exists({ checkFalsey: true }).withMessage("Answer body must not be blank.")
 ]
 
-router.post('/:id(\\d+)', validateAnswer, asyncHandler(async (req, res) => {
+router.post('/:id(\\d+)/answer', validateAnswer, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const { answerMessage } = req.body;
     const loggedIn = res.locals.authenticated;
@@ -73,7 +74,7 @@ router.post('/:id(\\d+)', validateAnswer, asyncHandler(async (req, res) => {
         });
         res.redirect(`/questions/${id}`); // might change this later to do some kind of fancy AJAX thing but this (which is basically just refreshing the page) should work for now
     }
-    else res.redirect('/users/log-in');
+    else res.redirect(`http://localhost:${port}/users/login`);
 }));
 
 module.exports = router;
