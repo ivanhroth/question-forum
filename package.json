@@ -23,10 +23,7 @@
     "csurf": "^1.11.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-<<<<<<< HEAD
     "express-session": "^1.17.1",
-=======
->>>>>>> 171a7520478e02d223537d924b3644508d82c7b0
     "express-validator": "^6.6.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",

@@ -1,9 +1,6 @@
 const express = require("express");
-const { check } = require("express-validator");
 const { handleValidationErrers, asyncHandler } = require("../utils");
-
 const { check } = require("express-validator");
-const { handleValidationErrers, asyncHandler } = require("../utils");
 
 const router = express.Router();
 
