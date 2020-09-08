@@ -1,8 +1,9 @@
 extends layout.pug
 
 block content
-    h2= question.title
-    h3= user
-    div
-        p= question.body
-    div(id="answers-container")
+    div(id="question-container")
+        h2= question.title
+        h3 Asked by #{user.username} at #{question.createdAt}
+        div
+            p= question.message
+        div(id="answers-container")

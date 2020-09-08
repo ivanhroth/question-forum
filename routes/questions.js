@@ -14,7 +14,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
             questionId: id
         }
     });
-    res.render('question', { title: `Question: ${question.title}`, question, user, answer, csrfToken: req.csrfToken() })
+    res.render('question', { title: `Question: ${question.title}`, question, user, answers })
 }))
 
 module.exports = router;
