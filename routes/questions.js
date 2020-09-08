@@ -56,10 +56,15 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     res.render('question', { title: `Question: ${question.title}`, question, user, answers, answerSubmitURL })
 }));
 
-router.post('/:id(\\d+)', asyncHandler(async (req, res) => {
+const validateAnswer = [
+    check('answerMessage').exists({ checkFalsey: true }).withMessage("Answer body must not be blank.")
+]
+
+router.post('/:id(\\d+)', validateAnswer, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const { answerMessage } = req.body;
-    res.redirect('/');
+    // TODO: check if the user is logged in; if so, create the question object, associated with the relevant userId. otherwise redirect them to the login page
+    res.redirect('/log-in');
 }));
 
 module.exports = router;
