@@ -74,7 +74,7 @@ asyncHandler(async (req, res) => {
       user.hashedPassword = hashedPassword;
       await user.save();
       loginUser(req, res, user);
-      res.redirect('/');
+      res.redirect('/questions');
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
       res.render('sign-up', {
@@ -125,7 +125,7 @@ asyncHandler(async (req, res) => {
           // If the password hashes match, then login the user
           // and redirect them to the default route.
           loginUser(req, res, user);
-          return res.redirect('/');
+          return res.redirect('/questions');
         }
       }
 
@@ -142,5 +142,10 @@ asyncHandler(async (req, res) => {
       csrfToken: req.csrfToken(),
     });
   }));
+
+  router.post('/users/logout', (req, res) => {
+    logoutUser(req, res);
+    res.redirect('/users/login');
+  });
 
 module.exports = router;
