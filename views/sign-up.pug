@@ -3,13 +3,15 @@ extends layout.pug
 include utils.pug
 
 block content
-  form(action='/user/register' method='post')
+  +validationErrorSummary(errors)
+  form(action='/users/sign-up' method='post')
+    input(type='hidden' name='_csrf' value=csrfToken)
     +field('Username', 'username', user.username)
-    +field('Email Address', 'emailAddress', user.emailAddress)
+    +field('Email Address', 'email', user.email)
     +field('Password', 'password', user.password, 'password')
     +field('Confirm Password', 'confirmPassword', '', 'password')
     div(class='py-4')
       button(type='submit' class='btn btn-primary') Sign-up
       a(href='/' class='btn btn-warning ml-2') Cancel
   div
-    p: a(href='/user/login') Already have an account?
+    p: a(href='/users/login') Already have an account?

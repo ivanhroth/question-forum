@@ -1,0 +1,15 @@
+extends layout.pug
+
+include utils.pug
+
+block content
+    div(id="question-container")
+        h2= question.title
+        h3 Asked by #{user.username} at #{question.createdAt}
+        div
+            p= question.message
+    div(id="answer-form-container")
+        form(action=answerSubmitURL method="POST")
+            +field(answerMessage, answerMessage, null, 'textarea', "Type your answer here!")
+            button(type="submit") Submit answer
+    div(id="answers-container")

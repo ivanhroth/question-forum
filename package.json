@@ -19,11 +19,19 @@
   "homepage": "https://github.com/ivanhroth/question-forum#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "csurf": "^1.11.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+<<<<<<< HEAD
+    "express-session": "^1.17.1",
+=======
+>>>>>>> 171a7520478e02d223537d924b3644508d82c7b0
+    "express-validator": "^6.6.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
     "pg": "^8.3.3",
+    "pug": "^3.0.0",
     "sequelize": "^5.22.3",
     "sequelize-cli": "^5.5.1"
   },
