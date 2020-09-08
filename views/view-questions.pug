@@ -4,8 +4,8 @@ block content
     h2 Questions
     a(href='/questions/ask') Ask a Question
     div(class="questions")
-        ul
-            for question in questions
-                li= question.id
+        for question in questions
+            div(class="questions")
+                li Question:
+                    a(href=`/questions/${question.id}`) ##{question.id}
                 li= question.title
-                a(href=`/quesions/#{id}`)

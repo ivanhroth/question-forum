@@ -15,6 +15,10 @@ app.set('view engine', 'pug');
 app.use(morgan('dev'));
 app.use(cookieParser(sessionSecret));
 
+app.get('/', (req, res) => {
+  res.send('Hello World')
+})
+
 app.use(session({
   name: 'question-forum.sid',
   store: new (store(session))(),
