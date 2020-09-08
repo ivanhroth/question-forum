@@ -8,6 +8,7 @@ const { environment, sessionSecret } = require('./config');
 const store = require('connect-pg-simple');
 
 const app = express();
+app.use(express.urlencoded({ extended: false }));
 
 app.set('view engine', 'pug');
 
@@ -22,7 +23,6 @@ app.use(session({
   saveUninitialized: false,
 }));
 
-app.use(express.urlencoded({ extended: false }));
 
 app.use("/users", usersRouter);
 app.use("/questions", questionsRouter);
