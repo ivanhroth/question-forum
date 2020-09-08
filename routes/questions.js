@@ -51,13 +51,28 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     const question = await Question.findByPk(id);
     const user = await User.findByPk(question.userId);
     const answerSubmitURL = `/questions/${id}/answer`;
+    res.render('question', { title: `Question: ${question.title}`, question, user, answerSubmitURL })
+}));
+
+router.get('/:id(\\d+)/answers', asyncHandler(async (req, res) => {
+    const id = req.params.id;
     const answers = await Answer.findAll({
         where: {
             questionId: id
         }
     });
-    res.render('question', { title: `Question: ${question.title}`, question, user, answers, answerSubmitURL })
-}));
+    console.log(answers);
+    const answerList = [];
+    await answers.forEach(async answer => {
+        const user = await User.findByPk(answer.userId);
+        answerList.push({
+            message: answer.message,
+            user
+        })
+    });
+    console.log(answerList);
+    res.json({ answers: answerList });
+}))
 
 const validateAnswer = [
     check('answerMessage').exists({ checkFalsey: true }).withMessage("Answer body must not be blank.")
