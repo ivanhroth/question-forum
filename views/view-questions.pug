@@ -6,6 +6,6 @@ block content
     div(class="questions")
         ul
             for question in questions
-                li= quesiton.id
+                li= question.id
                 li= question.title
                 a(href=`/quesions/#{id}`)

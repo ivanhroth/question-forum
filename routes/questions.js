@@ -11,11 +11,7 @@ const { Question, User, Answer } = db;
 
 router.get('/', asyncHandler(async (req, res) => {
     const questions = await Question.findAll({
-        include: {
-            title,
-            message
-        },
-        order: '"createdAt" DESC'
+        order: [['createdAt', 'DESC']]
     });
     res.render('view-questions', { title: 'Questions', questions});
 }));
