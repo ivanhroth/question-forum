@@ -61,17 +61,8 @@ router.get('/:id(\\d+)/answers', asyncHandler(async (req, res) => {
             questionId: id
         }
     });
-    console.log(answers);
-    const answerList = [];
-    await answers.forEach(async answer => {
-        const user = await User.findByPk(answer.userId);
-        answerList.push({
-            message: answer.message,
-            user
-        })
-    });
-    console.log(answerList);
-    res.json({ answers: answerList });
+    const users = await answers.map(async answer => await User.findByPk(answer.userId));
+    res.json({answers, users});
 }))
 
 const validateAnswer = [
