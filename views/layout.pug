@@ -5,5 +5,8 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title= title
     body
+    if locals.authenticated
+        span(class='nav-bar-1') Welcome #{user.username}!
+        form(class='form-inline' action='/users/logout' method='post')
+            button(class='btn logout' type='submit') Logout
     block content
-    
