@@ -48,7 +48,7 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const question = await Question.findByPk(id);
     const user = await User.findByPk(question.userId);
-    const answerSubmitURL = `/questions/${id}/answer`;
+    const answerSubmitURL = `/questions/${id}/answers`;
     res.render('question', { title: `Question: ${question.title}`, question, user, answerSubmitURL })
 }));
 
@@ -71,7 +71,7 @@ const validateAnswer = [
     check('answerMessage').exists({ checkFalsey: true }).withMessage("Answer body must not be blank.")
 ]
 
-router.post('/:id(\\d+)/answer', requireAuth, validateAnswer, asyncHandler(async (req, res) => {
+router.post('/:id(\\d+)/answers', requireAuth, validateAnswer, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const { answerMessage } = req.body;
     const loggedIn = res.locals.authenticated;
