@@ -6,26 +6,13 @@ html(lang="en")
         title= title
         link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous")
     body
-<<<<<<< HEAD
-    nav(class="navbar navbar-light" style="background-color: #e3f2fd;")      
-        if locals.authenticated
-            span(class='nav-bar-1') Welcome #{user.username}!
-            form(class='form-inline' action='/users/login' method='post')
-                button(class='navbar btn btn-primary' type='submit') Logout
-        else
-          span(class='navbar')
-            a(class="navbar btn btn-success" href='/users/login') Login
-            a(class="navbar btn btn-primary" href='/users/sign-up') Register
-    block content
-=======
         nav(class="navbar navbar-light" style="background-color: #e3f2fd;")
             if locals.authenticated
                 span(class='nav-bar-1') Welcome #{user.username}!
-                form(class='form-inline' action='/users/logout' method='post')
-                    button(class='btn logout' type='submit') Logout
+                form(class='form-inline' action='/' method='get')
+                    button(class='navbar btn btn-primary' type='submit') Logout
             else
                 span(class='navbar')
                     a(class="navbar btn btn-success" href='/users/login') Login
                     a(class="navbar btn btn-primary" href='/users/sign-up') Register
         block content
->>>>>>> bf2ef374e7cde566f86ed0688350f2d95edd5435
