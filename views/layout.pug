@@ -4,9 +4,16 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title= title
+        link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous")
     body
-        if locals.authenticated
-            span(class='nav-bar-1') Welcome #{user.username}!
-            form(class='form-inline' action='/users/logout' method='post')
-                button(class='btn logout' type='submit') Logout
+        nav(class="navbar navbar-light" style="background-color: #e3f2fd;")
+            if locals.authenticated
+                span(class='nav-bar-1') Welcome #{user.username}!
+                form(class='form-inline' action='/users/logout' method='post')
+                    button(class='btn logout' type='submit') Logout
+            block content
+            else
+            span(class='navbar')
+                a(class="navbar btn btn-success" href='/users/login') Login
+                a(class="navbar btn btn-primary" href='/users/sign-up') Register
         block content

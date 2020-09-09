@@ -2,7 +2,7 @@ const express = require("express");
 const { handleValidationErrers, asyncHandler } = require("../utils");
 const { check } = require("express-validator");
 const { port } = require('../config');
-
+const { requireAuth } = require('../auth');
 const router = express.Router();
 
 const db = require('../models');
@@ -10,14 +10,14 @@ const { Question, User, Answer } = db;
 
 
 
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/', requireAuth,asyncHandler(async (req, res) => {
     const questions = await Question.findAll({
         order: [['createdAt', 'DESC']]
     });
     res.render('view-questions', { title: 'Questions', questions});
 }));
 
-router.get('/ask', asyncHandler(async (req, res) => {
+router.get('/ask', requireAuth, asyncHandler(async (req, res) => {
     const question = Question.build();
     res.render('question-form', {
         title: 'Question Form',
@@ -36,7 +36,7 @@ const validateQuestion = [
         .withMessage("Message cannot be empty.")
 ]
 
-router.post('/ask', validateQuestion, asyncHandler(async (req, res) => {
+router.post('/ask', requireAuth, validateQuestion, asyncHandler(async (req, res) => {
     const { title, message } = req.body
     const question = await Question.create({
         title: title,
@@ -46,7 +46,7 @@ router.post('/ask', validateQuestion, asyncHandler(async (req, res) => {
 }));
 
 
-router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
+router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const question = await Question.findByPk(id);
     const user = await User.findByPk(question.userId);
@@ -74,7 +74,7 @@ const validateAnswer = [
     check('answerMessage').exists({ checkFalsey: true }).withMessage("Answer body must not be blank.")
 ]
 
-router.post('/:id(\\d+)/answer', validateAnswer, asyncHandler(async (req, res) => {
+router.post('/:id(\\d+)/answer', requireAuth, validateAnswer, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const { answerMessage } = req.body;
     const loggedIn = res.locals.authenticated;
