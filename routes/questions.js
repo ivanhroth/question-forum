@@ -61,7 +61,12 @@ router.get('/:id(\\d+)/answers', asyncHandler(async (req, res) => {
             questionId: id
         }
     });
-    const users = await answers.map(async answer => await User.findByPk(answer.userId));
+    const users = answers.map(async answer => {
+        let user;
+        User.findByPk(answer.userId).then(u => user = u);
+        return user;
+    });
+    console.log(users);
     res.json({answers, users});
 }))
 
