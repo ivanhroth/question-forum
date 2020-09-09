@@ -10,6 +10,7 @@ const { Question, User, Answer } = db;
 
 router.get('/', requireAuth,asyncHandler(async (req, res) => {
     const questions = await Question.findAll({
+        include: [{ model: User }],
         order: [['createdAt', 'DESC']]
     });
     res.render('view-questions', { title: 'Questions', questions});

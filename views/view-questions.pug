@@ -5,7 +5,8 @@ block content
     a(href='/questions/ask') Ask a Question
     div(class="questions")
         for question in questions
-            div(class="questions")
+            div(class="questions" style="margin: 50px;")
                 li Question:
                     a(href=`/questions/${question.id}`) ##{question.id}
                 li= question.title
+                li= question.User.username
