@@ -8,7 +8,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         const answerBox = document.createElement("div");
         answerBox.classList.add("card");
         //answerBox.classList.add("panel-default");
-        answerBox.innerHTML = `<div class="card-body"><h5 class="card-title"><b>${user.username}</b> said:</h5><p>${message}</p></div>`;
+        answerBox.innerHTML = `<div class="card-body answer-box"><h5 class="card-title"><b>${user.username}</b> said:</h5><p>${message}</p></div>`;
         answersContainer.appendChild(answerBox);
     })
-})
+
+    document.getElementById("delete-question-button").addEventListener('click', async e => {
+        try {
+            await fetch(window.location.href, { method: 'DELETE' });
+        } catch (e) {
+            console.log(e);
+        }
+        console.log("Got here!");
+        window.location.href = window.location.href.split('/')[0];
+    })
+});

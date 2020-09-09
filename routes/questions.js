@@ -52,7 +52,10 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     const question = await Question.findByPk(id);
     const user = await User.findByPk(question.userId);
     const answerSubmitURL = `/questions/${id}/answers`;
-    res.render('question', { title: `Question: ${question.title}`, question, user, answerSubmitURL })
+    let loggedInAsCreator;
+    if (res.locals.authenticated) loggedInAsCreator = (question.userId === res.locals.user.id);
+    else loggedInAsCreator = false;
+    res.render('question', { title: `Question: ${question.title}`, question, user, answerSubmitURL, loggedInAsCreator })
 }));
 
 router.get('/:id(\\d+)/answers', asyncHandler(async (req, res) => {
@@ -92,6 +95,24 @@ router.post('/:id(\\d+)/answers', requireAuth, validateAnswer, asyncHandler(asyn
         res.redirect(`/questions/${id}`); // might change this later to do some kind of fancy AJAX thing but this (which is basically just refreshing the page) should work for now
     }
     else res.redirect(`http://localhost:${port}/users/login`);
+}));
+
+router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const question = await Question.findByPk(id);
+    try{
+        const answers = await Answer.findAll({
+            where: {
+                questionId: id
+            }
+        });
+        answers.forEach(async answer => {
+            await answer.destroy();
+        });
+    } catch (e){}
+    await question.destroy();
+    req.method = "GET";
+    res.redirect('/questions');
 }));
 
 module.exports = router;
