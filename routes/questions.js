@@ -38,11 +38,13 @@ const validateQuestion = [
 
 router.post('/ask', requireAuth, validateQuestion, asyncHandler(async (req, res) => {
     const { title, message } = req.body
+    const userId = res.locals.user.id;
     const question = await Question.create({
-        title: title,
-        message: message
-    })
-    res.redirect('/questions/:id')
+            title: title,
+            message: message,
+            userId: userId
+        })
+    res.redirect(`/questions/${question.id}`)
 }));
 
 
