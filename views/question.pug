@@ -11,6 +11,6 @@ block content
             p= question.message
     div(id="answer-form-container")
         form(action=answerSubmitURL method="POST")
-            +field(answerMessage, answerMessage, null, 'textarea', "Type your answer here!")
+            +field('Answer', 'answerMessage', '', 'textarea', "Type your answer here!")
             button(type="submit") Submit answer
     div(id="answers-container")

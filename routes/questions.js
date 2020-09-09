@@ -77,14 +77,19 @@ const validateAnswer = [
 router.post('/:id(\\d+)/answer', requireAuth, validateAnswer, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const { answerMessage } = req.body;
+    console.log(req.body);
     const loggedIn = res.locals.authenticated;
     if (loggedIn){
         const userId = res.locals.user.id;
-        await Answer.create({
-            questionId: id,
-            userId,
-            message: answerMessage
-        });
+        try {
+            await Answer.create({
+                questionId: id,
+                userId,
+                message: answerMessage
+            });
+        } catch (e){
+            console.log(e);
+        }
         res.redirect(`/questions/${id}`); // might change this later to do some kind of fancy AJAX thing but this (which is basically just refreshing the page) should work for now
     }
     else res.redirect(`http://localhost:${port}/users/login`);
