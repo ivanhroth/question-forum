@@ -143,9 +143,9 @@ asyncHandler(async (req, res) => {
     });
   }));
 
-  router.post('/users/logout', (req, res) => {
+  router.post('/logout', (req, res) => {
     logoutUser(req, res);
-    res.redirect('/users/login');
+    res.redirect('/');
   });
 
 module.exports = router;

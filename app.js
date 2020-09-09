@@ -18,7 +18,7 @@ app.use(express.static('public/js'));
 app.use(morgan('dev'));
 app.use(cookieParser(sessionSecret));
 app.get('/', (req, res) => {
-  res.send('Hello World')
+  res.render('layout')
 });
 
 app.use(session({
