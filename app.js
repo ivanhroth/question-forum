@@ -6,7 +6,8 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const { environment, sessionSecret } = require('./config');
 const store = require('connect-pg-simple');
-
+const { restoreUser } = require('./auth');
+const { propfind } = require("./routes/users");
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 
@@ -14,10 +15,9 @@ app.set('view engine', 'pug');
 
 app.use(morgan('dev'));
 app.use(cookieParser(sessionSecret));
-
 app.get('/', (req, res) => {
   res.send('Hello World')
-})
+});
 
 app.use(session({
   name: 'question-forum.sid',
@@ -26,6 +26,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
 }));
+app.use(restoreUser);
 
 
 app.use("/users", usersRouter);
