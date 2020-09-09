@@ -64,7 +64,6 @@ router.get('/:id(\\d+)/answers', asyncHandler(async (req, res) => {
         const user = await User.findByPk(answers[i].userId);
         users.push(user);
     }
-    console.log(users);
     res.json({answers, users});
 }))
 
@@ -75,7 +74,6 @@ const validateAnswer = [
 router.post('/:id(\\d+)/answer', requireAuth, validateAnswer, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const { answerMessage } = req.body;
-    console.log(req.body);
     const loggedIn = res.locals.authenticated;
     if (loggedIn){
         const userId = res.locals.user.id;

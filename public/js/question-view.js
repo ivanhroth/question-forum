@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const res = await fetch(`${window.location.href}/answers`);
     const { answers, users } = await res.json();
-    console.log(users[0]);
     const answersContainer = document.getElementById("answers-container");
     answers.forEach((answer, i) => {
         const message = answer.message;
