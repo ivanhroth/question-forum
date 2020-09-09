@@ -51,13 +51,24 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     const question = await Question.findByPk(id);
     const user = await User.findByPk(question.userId);
     const answerSubmitURL = `/questions/${id}/answer`;
+    res.render('question', { title: `Question: ${question.title}`, question, user, answerSubmitURL })
+}));
+
+router.get('/:id(\\d+)/answers', asyncHandler(async (req, res) => {
+    const id = req.params.id;
     const answers = await Answer.findAll({
         where: {
             questionId: id
         }
     });
-    res.render('question', { title: `Question: ${question.title}`, question, user, answers, answerSubmitURL })
-}));
+    const users = answers.map(async answer => {
+        let user;
+        User.findByPk(answer.userId).then(u => user = u);
+        return user;
+    });
+    console.log(users);
+    res.json({answers, users});
+}))
 
 const validateAnswer = [
     check('answerMessage').exists({ checkFalsey: true }).withMessage("Answer body must not be blank.")
