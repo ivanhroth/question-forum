@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const answerBox = document.createElement("div");
         answerBox.classList.add("card");
         //answerBox.classList.add("panel-default");
-        answerBox.innerHTML = `<div class="card-body"><p><b>${user.username}</b> said:</p><p>${message}</p></div>`;
+        answerBox.innerHTML = `<div class="card-body"><h5 class="card-title"><b>${user.username}</b> said:</h5><p>${message}</p></div>`;
         answersContainer.appendChild(answerBox);
     })
 })
