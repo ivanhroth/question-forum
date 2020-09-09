@@ -8,8 +8,6 @@ const router = express.Router();
 const db = require('../models');
 const { Question, User, Answer } = db;
 
-
-
 router.get('/', requireAuth,asyncHandler(async (req, res) => {
     const questions = await Question.findAll({
         order: [['createdAt', 'DESC']]
