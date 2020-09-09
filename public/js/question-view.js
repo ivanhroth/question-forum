@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         const message = answer.message;
         const user = users[i];
         const answerBox = document.createElement("div");
-        answerBox.innerHTML = `<p><b>${user.username}</b> said:</p><p>${message}</p>`;
+        answerBox.classList.add("card");
+        //answerBox.classList.add("panel-default");
+        answerBox.innerHTML = `<div class="card-body"><p><b>${user.username}</b> said:</p><p>${message}</p></div>`;
         answersContainer.appendChild(answerBox);
     })
 })
