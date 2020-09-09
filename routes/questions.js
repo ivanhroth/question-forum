@@ -8,8 +8,6 @@ const router = express.Router();
 const db = require('../models');
 const { Question, User, Answer } = db;
 
-
-
 router.get('/', requireAuth,asyncHandler(async (req, res) => {
     const questions = await Question.findAll({
         order: [['createdAt', 'DESC']]
@@ -61,12 +59,11 @@ router.get('/:id(\\d+)/answers', asyncHandler(async (req, res) => {
             questionId: id
         }
     });
-    const users = answers.map(async answer => {
-        let user;
-        User.findByPk(answer.userId).then(u => user = u);
-        return user;
-    });
-    console.log(users);
+    const users = [];
+    for (let i=0; i<answers.length; i++){
+        const user = await User.findByPk(answers[i].userId);
+        users.push(user);
+    }
     res.json({answers, users});
 }))
 
@@ -77,7 +74,6 @@ const validateAnswer = [
 router.post('/:id(\\d+)/answer', requireAuth, validateAnswer, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const { answerMessage } = req.body;
-    console.log(req.body);
     const loggedIn = res.locals.authenticated;
     if (loggedIn){
         const userId = res.locals.user.id;

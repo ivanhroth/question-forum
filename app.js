@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.set('view engine', 'pug');
 
 app.use(express.static('public'));
+app.use(express.static('public/js'));
 app.use(morgan('dev'));
 app.use(cookieParser(sessionSecret));
 app.get('/', (req, res) => {
