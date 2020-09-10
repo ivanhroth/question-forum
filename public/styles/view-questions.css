@@ -1,0 +1,16 @@
+.question-id{
+    float: left;
+    height: 150px;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid grey;
+}
+
+.card{
+    height: 150px;
+    border-top: 1px solid grey;
+}
+
+.question-holder{
+    height: 150px;
+}
