@@ -6,11 +6,13 @@ block content
     script(type="text/javascript" src="../js/question-view.js")
     div(id="question-container" class="card")
         h2(class="card-title")= question.title
-        h5(class="card-title") Asked by #{user.username} at #{question.createdAt}
+            if loggedInAsCreator
+                button(class="btn btn-danger" id="delete-question-button" style="margin-left:15px") Delete
+        h5(class="card-title") Asked by <b>#{user.username}</b> at #{question.createdAt}
         div(class="card-body")
             p= question.message
     div(id="answer-form-container")
         form(action=answerSubmitURL method="POST")
             +field('Answer', 'answerMessage', '', 'textarea', "Type your answer here!")
-            button(type="submit" class="btn btn-primary") Submit answer
+            button(id="answer-submit-button" type="submit" class="btn btn-primary") Submit answer
     div(id="answers-container")

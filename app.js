@@ -34,4 +34,45 @@ app.use(restoreUser);
 app.use("/users", usersRouter);
 app.use("/questions", questionsRouter);
 
+app.use((req, res, next) => {
+  const err = new Error('The requested page couldn\'t be found.');
+  err.status = 404;
+  next(err);
+});
+
+// Custom error handlers.
+
+// Error handler to log errors.
+app.use((err, req, res, next) => {
+  // check if error is a Sequelize error:
+  if (err instanceof ValidationError) {
+    err.errors = err.errors.map((e) => e.message);
+    err.title = "Sequelize Error";
+  }
+  next(err);
+});
+
+// Error handler for 404 errors.
+app.use((err, req, res, next) => {
+  if (err.status === 404) {
+    res.status(404);
+    res.render('page-not-found', {
+      title: 'Page Not Found',
+    });
+  } else {
+    next(err);
+  }
+});
+
+// Generic error handler.
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  const isProduction = environment === 'production';
+  res.render('error', {
+    title: 'Server Error',
+    message: isProduction ? null : err.message,
+    stack: isProduction ? null : err.stack,
+  });
+});
+
 module.exports = app;

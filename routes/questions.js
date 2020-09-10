@@ -52,7 +52,10 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     const question = await Question.findByPk(id);
     const user = await User.findByPk(question.userId);
     const answerSubmitURL = `/questions/${id}/answers`;
-    res.render('question', { title: `Question: ${question.title}`, question, user, answerSubmitURL })
+    let loggedInAsCreator;
+    if (res.locals.authenticated) loggedInAsCreator = (question.userId === res.locals.user.id);
+    else loggedInAsCreator = false;
+    res.render('question', { title: `Question: ${question.title}`, question, user, answerSubmitURL, loggedInAsCreator })
 }));
 
 router.get('/:id(\\d+)/answers', asyncHandler(async (req, res) => {
@@ -67,7 +70,7 @@ router.get('/:id(\\d+)/answers', asyncHandler(async (req, res) => {
         const user = await User.findByPk(answers[i].userId);
         users.push(user);
     }
-    res.json({answers, users});
+    res.json({answers, users, currentUserId: res.locals.user.id});
 }))
 
 const validateAnswer = [
@@ -93,5 +96,31 @@ router.post('/:id(\\d+)/answers', requireAuth, validateAnswer, asyncHandler(asyn
     }
     else res.redirect(`http://localhost:${port}/users/login`);
 }));
+
+router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const question = await Question.findByPk(id);
+    if(res.locals.user.id !== question.userId) res.send(403);
+    try{
+        const answers = await Answer.findAll({
+            where: {
+                questionId: id
+            }
+        });
+        answers.forEach(async answer => {
+            await answer.destroy();
+        });
+    } catch (e){}
+    await question.destroy();
+    res.send(200);
+}));
+
+router.delete('/:questionid(\\d+)/answers/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const answer = await Answer.findByPk(id);
+    if (res.locals.user.id !== answer.userId) res.send(403);
+    await answer.destroy();
+    res.send(200);
+}))
 
 module.exports = router;
