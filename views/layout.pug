@@ -2,12 +2,13 @@ doctype html
 html(lang="en")
     head
         meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
         title= title
         link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous")
+        //- link(href="pricing.css" rel="stylesheet")
     body
-        nav(class="navbar navbar-expand-lg navbar-light bg-white")
-            a(class="navbar-brand" href="/"): img(src="/assets/logo.jpg" class="d-inline-block align-top" width="205" height="41" alt="")
+        nav(class="navbar navbar-expand-lg bg-white sticky-top")
+            a(class="navbar-brand" href="/"): img(src="/assets/logo.jpg" width="205" height="41" alt="")
             if locals.authenticated
                 span(class='nav-bar-1')
                 form(class='form-inline' action='/users/logout' method='post')
@@ -17,3 +18,49 @@ html(lang="en")
                     a(class="btn btn-success m-1" href='/users/login') Login
                     a(class="btn btn-primary m-1" href='/users/sign-up') Sign Up
         block content
+            .jumbotron.splash-page-container
+                h1.display-4 We <3 questions
+                p.lead
+                    | We aim to inspire developers and connect them to solutions that drive growth.
+                p.lead
+                    a.btn.btn-lg.btn-light(href='/questions' role='button') All Questions
+
+
+            div.container
+                div.card-deck.mb-3.text-center
+                    div.card.mb-4.box-shadow
+                        div.card-header
+                            h4(class="my-0 font-weight-normal") Basic
+                        div.card-body
+                            h1(class="card-title pricing-card-title") $6
+                                small(class="text-muted") /mo
+                            ul(class="list-unstyled mt-3 mb-4")
+                                li Free 30 day trial
+                                li Your own private space
+                                li Fully searchable archive
+                                li Help center access
+                            button(class="btn btn-lg btn-block btn-primary" type="button") Get started for free
+                    div.card.mb-4.box-shadow
+                        div.card-header
+                            h4(class="my-0 font-weight-normal") Pro
+                        div.card-body
+                            h1(class="card-title pricing-card-title") $12
+                                small(class="text-muted") / mo
+                            ul(class="list-unstyled mt-3 mb-4")
+                                li 20 users included
+                                li 10 GB of storage
+                                li Priority email support
+                                li Help center access
+                            button(class="btn btn-lg btn-block btn-primary" type="button") Get started
+                    div.card.mb-4.box-shadow
+                        div.card-header
+                            h4(class="my-0.font-weight-normal") Custom pricing
+                        div.card-body
+                            h1(class="card-title pricing-card-title") $29
+                                small(class="text-muted") / mo
+                            ul(class="list-unstyled mt-3 mb-4")
+                                li 30 users included
+                                li 15 GB of storage
+                                li Phone and email support
+                                li Help center access
+                            button(class="btn btn-lg btn-block btn-primary" type="button") Request a demo

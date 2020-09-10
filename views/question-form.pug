@@ -3,7 +3,7 @@ include utils.pug
 block content
     form(action='/questions/ask' method='post')
       +field('Question', 'title', question.title)
-      +field('Body', 'message', question.message)
+      +field('Body', 'message', question.message, textarea)
       div(class='py-4')
         button(type='submit' class='btn btn-primary') Ask Question
         a(href='/questions' class='btn btn-warning ml-2') Cancel

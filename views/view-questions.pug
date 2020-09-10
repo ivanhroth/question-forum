@@ -5,8 +5,12 @@ block content
     a(href='/questions/ask') Ask a Question
     div(class="questions")
         for question in questions
-            div(class="questions" style="margin: 50px;")
-                li Question:
-                    a(href=`/questions/${question.id}`) ##{question.id}
-                li= question.title
-                li= question.User.username
+            div
+                div(class="question-id" style="float: left; justify-content: center")
+                    p Question ##{question.id}
+                div(class="card")
+                    div.card-body
+                        h4.card-title
+                            a(href=`/questions/${question.id}`) #{question.title}
+                        h5.card-title= question.message
+                        p.card-text User: #{question.User.username}
