@@ -18,7 +18,8 @@ html(lang="en")
                     a(class="btn btn-success m-1" href='/users/login') Login
                     a(class="btn btn-primary m-1" href='/users/sign-up') Sign Up
         block content    
-            .jumbotron.splash-page-container
+            div(class="jumbotron text-center bg-warning")
+                embed(#="hero-image" src="/assets/jumbo.svg" height="400" width="800")                    
                 h1.display-4 We <3 questions
                 p.lead
                     | We aim to inspire developers and connect them to solutions that drive growth.
