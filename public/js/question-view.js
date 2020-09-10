@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log(e);
         }
         console.log("Got here!");
-        window.location.href = window.location.href.split('/')[0];
+        const homeURL = ['http:/', window.location.href.split('/')[2], 'questions'].join('/');
+        console.log(homeURL);
+        window.location.href = homeURL;
+        // http: - localhost:8080
     })
 });
