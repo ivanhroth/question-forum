@@ -100,6 +100,7 @@ router.post('/:id(\\d+)/answers', requireAuth, validateAnswer, asyncHandler(asyn
 router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const question = await Question.findByPk(id);
+    if(res.locals.user.id !== question.userId) res.send(403);
     try{
         const answers = await Answer.findAll({
             where: {
@@ -117,6 +118,7 @@ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
 router.delete('/:questionid(\\d+)/answers/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const answer = await Answer.findByPk(id);
+    if (res.locals.user.id !== answer.userId) res.send(403);
     await answer.destroy();
     res.send(200);
 }))
