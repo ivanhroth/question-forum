@@ -111,8 +111,14 @@ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
         });
     } catch (e){}
     await question.destroy();
-    req.method = "GET";
-    res.redirect('/questions');
+    res.send(200);
 }));
+
+router.delete('/:questionid(\\d+)/answers/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const answer = await Answer.findByPk(id);
+    await answer.destroy();
+    res.send(200);
+}))
 
 module.exports = router;
