@@ -20,6 +20,11 @@ html {
     bottom: 10rem;
   }
 
+  .svgss {
+    margin-left:6rem;
+    margin-top:5rem;
+  }
+
   #hero-image{
     position:absolute;
     left:0px;
