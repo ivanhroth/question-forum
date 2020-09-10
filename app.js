@@ -44,10 +44,10 @@ app.use((req, res, next) => {
 
 // Error handler to log errors.
 app.use((err, req, res, next) => {
-  if (environment === 'production' || environment === 'test') {
-    // TODO Log the error to the database.
-  } else {
-    console.error(err);
+  // check if error is a Sequelize error:
+  if (err instanceof ValidationError) {
+    err.errors = err.errors.map((e) => e.message);
+    err.title = "Sequelize Error";
   }
   next(err);
 });
