@@ -19,9 +19,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log(e);
         }
         console.log("Got here!");
-        const homeURL = ['http:/', window.location.href.split('/')[2], 'questions'].join('/');
+        const homeURL = ['http:/', window.location.href.split('/')[2], 'questions'].join('/'); // redirects to the questions list without referencing "localhost" by modifying the current URL
         console.log(homeURL);
         window.location.href = homeURL;
-        // http: - localhost:8080
     })
 });
