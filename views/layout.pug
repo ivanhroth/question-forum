@@ -5,7 +5,7 @@ html(lang="en")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         title= title
         link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous")
-        //- link(href="pricing.css" rel="stylesheet")
+        link(href="/styles/layout.css" rel="stylesheet")
     body
         nav(class="navbar navbar-expand-lg bg-white sticky-top")
             a(class="navbar-brand" href="/"): img(src="/assets/logo.jpg" width="205" height="41" alt="")
@@ -21,11 +21,37 @@ html(lang="en")
             div(class="jumbotron text-center bg-warning")
                 embed(#="hero-image" src="/assets/jumbo.svg" height="400" width="800")                    
                 h1.display-4 We <3 questions
-                p.lead
+                    p.lead
                     | We aim to inspire developers and connect them to solutions that drive growth.
-                p.lead
+                    p.lead
                     a.btn.btn-lg.btn-light(href='/questions' role='button') All Questions
 
+            div.main
+                div.container.marketing
+                    div.row
+                        div(class="shadow p-3 mb-5 bg-white rounded col-lg-4")
+                            embed(#="hero-feature" src="/assets/svg23.svg")                                   
+                            h2 Browse jobs
+                            p
+                                | Find the right job through high quality listings and search for roles based on title, technology stack, salary, location, and more.
+                            p
+                                a.btn.btn-secondary(href='#' role='button') Find a job
+                        div(class="shadow p-3 mb-5 bg-white rounded col-lg-4")
+                            embed(#="hero-feature" src="/assets/svg22.svg")                                                               
+                            h2 Private Q&A
+
+                            p
+                                | Level up with Stack Overflow while you work. Share knowledge privately with your coworkers using our flagship Q&A engine.
+                            p
+                                a.btn.btn-secondary(href='#' role='button') Try for free
+                        div(class="shadow p-3 mb-5 bg-white rounded col-lg-4")
+                            embed(#="hero-feature" src="/assets/svg21.svg")                                   
+                            h2 Public Q&A
+
+                            p
+                                | Get answers to more than 16.5 million questions and give back by sharing your knowledge with others. Sign up for an account.
+                            p
+                                a.btn.btn-secondary(href='#' role='button') Browse questions
 
             div.container
                 div.card-deck.mb-3.text-center
