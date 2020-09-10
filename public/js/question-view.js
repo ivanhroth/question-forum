@@ -1,14 +1,18 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const res = await fetch(`${window.location.href}/answers`);
-    const { answers, users } = await res.json();
+    const { answers, users, currentUserId } = await res.json();
     const answersContainer = document.getElementById("answers-container");
     answers.forEach((answer, i) => {
         const message = answer.message;
         const user = users[i];
         const answerBox = document.createElement("div");
         answerBox.classList.add("card");
+        let button;
+        if (user.id === currentUserId){
+            button = `<form action="${window.location.href}/answers/${answer.id}" method="DELETE"><button type="submit" class="btn btn-danger">Delete answer</button></form>`;
+        } else button = "";
         //answerBox.classList.add("panel-default");
-        answerBox.innerHTML = `<div class="card-body answer-box"><h5 class="card-title"><b>${user.username}</b> said:</h5><p>${message}</p></div>`;
+        answerBox.innerHTML = `<div class="card-body answer-box"><h5 class="card-title"><b>${user.username}</b> said:</h5><p>${message}</p>${button}</div>`;
         answersContainer.appendChild(answerBox);
     })
 

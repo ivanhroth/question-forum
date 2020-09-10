@@ -70,7 +70,7 @@ router.get('/:id(\\d+)/answers', asyncHandler(async (req, res) => {
         const user = await User.findByPk(answers[i].userId);
         users.push(user);
     }
-    res.json({answers, users});
+    res.json({answers, users, currentUserId: res.locals.user.id});
 }))
 
 const validateAnswer = [
