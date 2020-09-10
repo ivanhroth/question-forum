@@ -8,7 +8,7 @@ block content
         h2(class="card-title")= question.title
             if loggedInAsCreator
                 button(class="btn btn-danger" id="delete-question-button" style="margin-left:15px") Delete
-        h5(class="card-title") Asked by #{user.username} at #{question.createdAt}
+        h5(class="card-title") Asked by <b>#{user.username}</b> at #{question.createdAt}
         div(class="card-body")
             p= question.message
     div(id="answer-form-container")
