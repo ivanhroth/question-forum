@@ -1,16 +1,19 @@
 .question-id{
     float: left;
-    height: 150px;
-    justify-content: center;
-    align-items: center;
+    height: 125px;
     border-top: 1px solid grey;
 }
 
+.question-id p,
+.question-id h2{
+    text-align: center;
+}
+
 .card{
-    height: 150px;
+    height: 125px;
     border-top: 1px solid grey;
 }
 
 .question-holder{
-    height: 150px;
+    height: 125px;
 }
