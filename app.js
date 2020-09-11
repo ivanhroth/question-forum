@@ -70,8 +70,10 @@ app.use((err, req, res, next) => {
   const isProduction = environment === 'production';
   res.render('error', {
     title: 'Server Error',
-    message: isProduction ? null : err.message,
-    stack: isProduction ? null : err.stack,
+    //message: isProduction ? null : err.message,
+    //stack: isProduction ? null : err.stack,
+    message: err.message,
+    stack: err.stack,
   });
 });
 
