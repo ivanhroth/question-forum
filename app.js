@@ -43,14 +43,14 @@ app.use((req, res, next) => {
 // Custom error handlers.
 
 // Error handler to log errors.
-app.use((err, req, res, next) => {
-  // check if error is a Sequelize error:
-  if (err instanceof ValidationError) {
-    err.errors = err.errors.map((e) => e.message);
-    err.title = "Sequelize Error";
-  }
-  next(err);
-});
+// app.use((err, req, res, next) => {
+//   // check if error is a Sequelize error:
+//   if (err instanceof ValidationError) {
+//     err.errors = err.errors.map((e) => e.message);
+//     err.title = "Sequelize Error";
+//   }
+//   next(err);
+// });
 
 // Error handler for 404 errors.
 app.use((err, req, res, next) => {
