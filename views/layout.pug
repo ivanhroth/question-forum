@@ -4,10 +4,11 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         title= title
+        link(rel="shortcut icon" href="https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico?v=ec617d715196")
         link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous")
-        //- link(href="pricing.css" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap" rel="stylesheet")
         link(href="/styles/layout.css" rel="stylesheet")
-        link(href="/styles/view-questions.css" rel="stylesheet")
+       
     body
         nav(class="navbar navbar-expand-lg bg-white sticky-top")
             a(class="navbar-brand" href="/"): img(src="/assets/logo.jpg" width="205" height="41" alt="")
@@ -30,6 +31,12 @@ html(lang="en")
 
             div.main
                 div.container.marketing
+                    div.desc-top
+                        h2.desc-top-title.text-center.text-secondary For Developers, by developers
+                        div.bar-pill
+                        div.desc-top-text
+                            p.p-desc-top-text.text-center.text-secondary
+                                | Stack Overflow is an open community for anyone that codes.
                     div.row
                         div(class="shadow p-3 mb-5 bg-white rounded col-lg-4")
                             div(class="svgss")
@@ -58,7 +65,13 @@ html(lang="en")
                             p
                                 a.btn.btn-secondary(href='#' role='button') Browse questions
 
-            div.container
+            div(class="container jumbotron bg-dark")
+                div.desc-top
+                    h2.desc-top-title.text-center Full Stack replica of Stack Overflow
+                    div.bar-pill
+                    div.desc-top-text
+                        p.p-desc-top-text.text-center
+                            | In this application we used Javascript, HTML/CSS, Bootstrap, NPM libraries, AJAX, Express, Postgres, BCrypt
                 div.card-deck.mb-3.text-center
                     div.card.mb-4.box-shadow
                         div.card-header
@@ -96,3 +109,29 @@ html(lang="en")
                                 li Phone and email support
                                 li Help center access
                             button(class="btn btn-lg btn-block btn-primary" type="button") Request a demo
+            div(class="container jumbotron bg-light")
+                            div.desc-top
+                                h2.desc-top-title.text-center.text-secondary For businesses, by developers
+                                div.bar-pill
+                                div.desc-top-text
+                                    p.p-desc-top-text.text-center.text-secondary
+                                        | Our mission is to help developers write the script of the future.
+                            div.row.text-center
+                                div(class="shadow p-3 mb-5 bg-white rounded col-lg-4")
+                                    div(class="svgss")
+                                        img.d-block(src='https://cdn.sstatic.net/Img/home/private-questions.svg?v=a4f1cfb08f7e' width='76')
+                                    h2 Private Q&A
+                                    p
+                                        | Quickly find and share internal knowledge.
+                                div(class="shadow p-3 mb-5 bg-white rounded col-lg-4")
+                                    div(class="svgss")
+                                        img.d-block(src='https://cdn.sstatic.net/Img/home/find-candidate.svg?v=9099aa106ad3' width='76')
+                                    h2 Talent Solutions
+                                    p
+                                        | Find the perfect candidate for your growing technical team.
+                                div(class="shadow p-3 mb-5 bg-white rounded col-lg-4")
+                                    div(class="svgss")
+                                        img.d-block(src='https://cdn.sstatic.net/Img/home/accelerate.svg?v=9d4c2786ff02' width='76')
+                                    h2 Advertising platform
+                                    p
+                                        | Accelerate the discovery of your products or services.
