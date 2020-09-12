@@ -11,6 +11,7 @@ block content
                     h4 Question
                     h2 ##{question.id}
                     p By: #{question.User.username}
+                    p=`Asked ${timeArray[questions.indexOf(question)]}`
                 div(class="card card-holder")
                     div.card-body
                         h4.card-title

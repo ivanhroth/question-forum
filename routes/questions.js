@@ -4,6 +4,7 @@ const { check } = require("express-validator");
 const { port } = require('../config');
 const { requireAuth } = require('../auth');
 const router = express.Router();
+const { obtainTime } = require('../public/js/get-time')
 
 const db = require('../models');
 const { Question, User, Answer } = db;
@@ -13,7 +14,14 @@ router.get('/', requireAuth,asyncHandler(async (req, res) => {
         include: [{ model: User }],
         order: [['createdAt', 'DESC']]
     });
-    res.render('view-questions', { title: 'Questions', questions});
+    // console.log(questions[0].dataValues.id)
+    const timeArray = [];
+    for (let i = 0; i < questions.length; i++) {
+        const time = await questions[i].dataValues.createdAt;
+        timeArray[i] = await obtainTime(time)
+    }
+    console.log(timeArray[0])
+    res.render('view-questions', { title: 'Questions', questions, timeArray});
 }));
 
 router.get('/ask', requireAuth, asyncHandler(async (req, res) => {

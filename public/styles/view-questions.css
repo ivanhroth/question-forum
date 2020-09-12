@@ -1,7 +1,8 @@
 .question-id{
     float: left;
-    height: 125px;
+    height: 175px;
     border-top: 1px solid grey;
+    width: 100px;
 }
 
 .question-id p,
@@ -10,10 +11,10 @@
 }
 
 .card{
-    height: 125px;
+    height: 175px;
     border-top: 1px solid grey;
 }
 
 .question-holder{
-    height: 125px;
+    height: 175px;
 }

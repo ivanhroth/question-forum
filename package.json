@@ -4,8 +4,7 @@
   "description": "",
   "main": "./bin/www",
   "scripts": {
-    "start": "per-env",
-    "start:development": "PGUSER=question_forum_app PGDATABASE=question_forum_development PGPASSWORD=password nodemon -r dotenv/config ./bin/www",
+    "start": "PGUSER=question_forum_app PGDATABASE=question_forum_development PGPASSWORD=password nodemon -r dotenv/config ./bin/www",
     "start:production": "node ./bin/www"
     },
   "repository": {
