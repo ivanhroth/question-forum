@@ -5,11 +5,11 @@ async function obtainTime(createdAt) {
 
     const diffInMiliseconds = await Math.abs(todaysDate.getTime() - time.getTime())
     const diffInSeconds = await Math.floor(diffInMiliseconds / 1000)
-    const diffInMinutes = await Math.floor(diffInSeconds / 60)
-    const diffInHours = await Math.floor(diffInMinutes / 60)
-    const diffInDays = await Math.floor(diffInHours / 24)
-    const diffInMonths = await Math.floor(diffInDays / 30)
-    const diffInYears = await Math.floor(diffInDays / 365)
+    const diffInMinutes = await Math.floor(diffInMiliseconds / 1000 / 60)
+    const diffInHours = await Math.floor(diffInMiliseconds / 1000 / 60 / 60)
+    const diffInDays = await Math.floor(diffInMiliseconds / 1000 / 60 / 60 / 24)
+    const diffInMonths = await Math.floor(diffInMiliseconds / 1000 / 60/ 60 / 24 / 30)
+    const diffInYears = await Math.floor(diffInMiliseconds / 1000 / 60 / 60 / 24 / 30 / 365)
 
     if (diffInYears > 0) {
         timeMessage = 'more than a year.';
