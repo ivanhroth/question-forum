@@ -17,7 +17,7 @@ html {
   .display-4 {
     position:absolute;
     z-index:1;
-    bottom: 500px;
+    bottom: 60%;
   }
 
   .svgss {
